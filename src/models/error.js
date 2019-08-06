@@ -1,6 +1,6 @@
-export default (code, message) => {
+export default (status, message) => {
   return {
-    code,
+    status,
     message
   }
 }
