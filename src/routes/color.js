@@ -24,6 +24,7 @@ router.post('/', [
 
   let newColor = new models.Color()
   newColor = Object.assign(newColor, req.body)
+  newColor.writer = req.user._id
 
   newColor.save()
     .then(r => res.json({
