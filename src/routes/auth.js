@@ -61,9 +61,11 @@ router.post('/login', [
       if (!r) return next(responses.checkAccount)
 
       const accessToken = jwt.sign({
+        _id: r._id,
         id: r.id,
         name: r.name,
-        type: r.type
+        type: r.type,
+        subject: r.subject
       }, req.app.get('jwtsecret'), {
         expiresIn: 60 * 60 * 24
       })
