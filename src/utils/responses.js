@@ -23,6 +23,10 @@ export default {
     status: 404,
     message: '존재하지 않는 색깔입니다.'
   },
+  tagNotExist: {
+    status: 404,
+    message: '존재하지 않는 태그입니다.'
+  },
   noPermission: {
     status: 403,
     message: '권한이 없습니다.'
