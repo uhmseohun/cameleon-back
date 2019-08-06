@@ -10,4 +10,26 @@ router.get('/', async (req, res, next) => {
   })
 })
 
+router.post('/',[
+  check('name').isString().not().isEmpty(),
+  check('teachers').isArray(),
+  check('color').isString()
+], (req, res, next) => {
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) return next(errors)
+
+  let newSubject = new models.Subject()
+  newSubject = Object.assign(newSubject, req.body)
+
+  newSubject.writer = req.user._id
+
+  newSubject.save()
+    .then(r => {
+      res.json({
+        subject: r
+      })
+    })
+    .catch(e => next(e))
+})
+
 export default router
