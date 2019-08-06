@@ -37,6 +37,7 @@ app.use('/class', routes.Class)
 app.use('/color', routes.Color)
 app.use('/subject', routes.Subject)
 app.use('/user', routes.User)
+app.use('/tag', routes.Tag)
 
 app.use((req, res, next) => {
   next(models.Error(404, utils.messages.noEndPoint))
