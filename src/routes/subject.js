@@ -12,7 +12,6 @@ router.get('/', async (req, res, next) => {
 
 router.post('/',[
   check('name').isString().not().isEmpty(),
-  check('teachers').isArray(),
   check('color').isString()
 ], (req, res, next) => {
   const errors = validationResult(req)

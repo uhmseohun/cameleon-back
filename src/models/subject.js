@@ -6,10 +6,6 @@ const subjectSchema = new Schema({
     required: true,
     trim: true
   },
-  teachers: {
-    type: [ Schema.Types.ObjectId ],
-    default: []
-  },
   color: {
     type: Schema.Types.ObjectId,
     ref: 'color'
