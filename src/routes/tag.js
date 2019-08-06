@@ -1,6 +1,7 @@
 import { Router } from 'express'
 import { check, validationResult } from 'express-validator'
 import models from '@/models'
+import responses from '@/utils/responses'
 
 const router = Router()
 
@@ -41,6 +42,9 @@ router.get('/:payload', async (req, res, next) => {
   }
 
   const tag = await models.Tag.findOne({ payload: req.params.payload })
+
+  if (!tag) return next(responses.tagNotExist)
+
   const rgb = hexToRgb((await models.Color.findById(tag.color)).rgb)
 
   res.send(`${rgb.r}, ${rgb.g}, ${rgb.b}`).end() // for aduino
