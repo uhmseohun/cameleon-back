@@ -93,3 +93,6 @@ typings/
 
 # lockfile
 package-lock.json
+
+# envfile
+.env
