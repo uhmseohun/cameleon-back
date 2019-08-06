@@ -48,7 +48,7 @@ router.post('/join', [
 router.post('/login', [
   check('id').isString().not().isEmpty(),
   check('password').isString().not().isEmpty()
-],(req, res, next) => {
+], (req, res, next) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) return next(errors)
 
