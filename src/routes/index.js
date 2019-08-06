@@ -4,6 +4,7 @@ import Color from './color'
 import Subject from './subject'
 import User from './user'
 import Tag from './tag'
+import Arduino from './arduino'
 
 export default {
   Auth,
@@ -11,5 +12,6 @@ export default {
   Color,
   Subject,
   User,
-  Tag
+  Tag,
+  Arduino
 }
