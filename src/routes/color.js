@@ -51,4 +51,8 @@ router.delete('/:colorId', async (req, res, next) => {
     .catch(e => next(e))
 })
 
+router.put('/:colorId', async (req, res, next) => {
+  // todo ...
+})
+
 export default router
