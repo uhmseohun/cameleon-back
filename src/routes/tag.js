@@ -1,7 +1,6 @@
 import { Router } from 'express'
 import { check, validationResult } from 'express-validator'
 import models from '@/models'
-import responses from '@/utils/responses'
 
 const router = Router()
 
