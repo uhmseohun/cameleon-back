@@ -10,7 +10,7 @@ router.get('/', async (req, res, next) => {
   })
 })
 
-router.post('/',[
+router.post('/', [
   check('name').isString().not().isEmpty(),
   check('color').isString()
 ], (req, res, next) => {
