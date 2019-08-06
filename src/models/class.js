@@ -11,14 +11,6 @@ const classSchema = new Schema({
     type: String,
     required: true
   },
-  students: {
-    type: [ Schema.Types.ObjectId ],
-    default: []
-  },
-  president: { // 반장이나 부반장 등
-    type: [ Schema.Types.ObjectId ],
-    default: []
-  },
   colors: {
     type: Object,
     default: {}
