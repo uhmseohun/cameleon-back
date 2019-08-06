@@ -6,6 +6,11 @@ import models from '@/models'
 
 const router = Router()
 
+function checkPermission (color, user) {
+  if (user.type === 'a') return true
+  return color.writer === user._id
+}
+
 router.get('/', (req, res, next) => {
   models.Color.find({})
     .then(r => res.json({
