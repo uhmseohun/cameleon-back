@@ -55,6 +55,4 @@ app.use((error, req, res, next) => {
   }
 })
 
-// routes here
-
 export default app
