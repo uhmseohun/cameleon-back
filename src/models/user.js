@@ -17,7 +17,7 @@ const userSchema = new Schema({
   },
   type: {
     type: String,
-    default: 's',
+    required: true,
     maxlength: 1
   },
   subject: Schema.Types.ObjectId,
