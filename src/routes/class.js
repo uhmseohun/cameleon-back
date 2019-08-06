@@ -21,7 +21,7 @@ router.post('/', [
   check('introduce').isString().not().isEmpty(),
   check('grade').isNumeric(),
   check('class').isNumeric(),
-  check('student').isArray(),
+  check('students').isArray(),
   check('president').isArray(),
   check('colors').not().isEmpty() // todo: verify isObject??
 ], (req, res, next) => {
