@@ -56,8 +56,6 @@ router.post('/login', [
   hashedPw.update(req.body.password)
   hashedPw = hashedPw.digest('base64')
 
-  console.log(hashedPw)
-
   models.User.findOne({ id: req.body.id, password: hashedPw })
     .then(r => {
       if (!r) return next(responses.checkAccount)
