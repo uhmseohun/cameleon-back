@@ -1,5 +1,45 @@
 import { Router } from 'express'
+import { check, validationResult } from 'express-validator'
+import crypto from 'crypto'
+import models from '@/models'
 
 const router = Router()
+
+/**
+ * @summary 아이디와 패스워드로 사용자 인증 후 토큰 발급해 반환
+ */
+router.post('/login', [
+  check(['id']).isString().not().isEmpty(),
+  check('password').isString().not().isEmpty(),
+  check('name').isString().not().isEmpty(),
+  check('type').isString().isLength({ min: 1, max: 1 })
+], (req, res, next) => {
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) return next(errors)
+
+  // sha512로 해싱 후 base64로 저장
+  let hashedPw = crypto.createHash('sha512')
+  hashedPw.update(req.body.password)
+  hashedPw = hashedPw.digest('base64')
+
+  // todo: attach salt to password
+
+  let newUser = new models.User()
+  newUser = Object.assign(newUser, req.body)
+  newUser.save()
+    .then(r => {
+      res.json({
+        user: {
+          id: r.id,
+          name: r.name,
+          type: r.type
+        }
+      })
+    }).catch(e => next(e))
+})
+
+router.post('/join', (req, res, next) => {
+
+})
 
 export default router
