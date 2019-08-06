@@ -36,9 +36,9 @@ app.use((req, res, next) => {
   next(models.Error(404, utils.messages.noEndPoint))
 })
 
-app.use((error, req, res, next) => {
-  if (error.formatter) {
-    let errors = error.errors
+app.use((response, req, res, next) => {
+  if (response.formatter) {
+    let errors = response.errors
       .map(v => v.param)
 
     errors = errors.filter((v, i) => {
@@ -49,8 +49,8 @@ app.use((error, req, res, next) => {
       message: `${errors.join(', ')} 항목을 확인해주세요`
     })
   } else {
-    res.status(500).json({
-      message: error.message
+    res.status(response.status || 500).json({
+      message: response.message
     })
   }
 })
