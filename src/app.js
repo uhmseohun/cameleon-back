@@ -30,6 +30,7 @@ mongoose.connect('mongodb://localhost:27017/cameleon',
   })
 
 app.use(utils.middlewares.auth)
+app.use(utils.middlewares.userInfo)
 
 app.use('/auth', routes.Auth)
 app.use('/class', routes.Class)
