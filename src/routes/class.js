@@ -20,10 +20,7 @@ router.post('/', [
   check('name').isString().not().isEmpty(),
   check('introduce').isString().not().isEmpty(),
   check('grade').isNumeric(),
-  check('class').isNumeric(),
-  check('students').isArray(),
-  check('president').isArray(),
-  check('colors').not().isEmpty() // todo: verify isObject??
+  check('class').isNumeric()
 ], (req, res, next) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) return next(errors)
