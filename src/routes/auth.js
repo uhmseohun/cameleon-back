@@ -6,9 +6,9 @@ import models from '@/models'
 const router = Router()
 
 /**
- * @summary 아이디와 패스워드로 사용자 인증 후 토큰 발급해 반환
+ * @summary 회원 정보를 받아 유저를 생성함
  */
-router.post('/login', [
+router.post('/join', [
   check(['id']).isString().not().isEmpty(),
   check('password').isString().not().isEmpty(),
   check('name').isString().not().isEmpty(),
