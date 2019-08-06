@@ -1,0 +1,11 @@
+import Class from './class'
+import Color from './color'
+import Subject from './subject'
+import User from './user'
+
+export default {
+  Class,
+  Color,
+  Subject,
+  User
+}

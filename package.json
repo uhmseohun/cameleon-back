@@ -1,0 +1,43 @@
+{
+  "name": "cameleon-back",
+  "version": "1.0.0",
+  "description": "cameleon backend",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js --exec babel-node",
+    "lint": "eslint . --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uhmtoto/cameleon-back.git"
+  },
+  "author": "Seohun Uhm <uhmtotow@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/uhmtoto/cameleon-back/issues"
+  },
+  "homepage": "https://github.com/uhmtoto/cameleon-back#readme",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/node": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "babel-plugin-root-import": "^6.4.1",
+    "eslint": "^5.16.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.17.3",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.1.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "nodemon": "^1.19.1",
+    "standard": "^13.0.2"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.6.8"
+  }
+}
