@@ -4,7 +4,6 @@ import responses from '@/utils/responses'
 export default async (req, res, next) => {
   const url = req.originalUrl; const token = req.headers.authorization
 
-  console.log(url)
   if (url.includes('/auth')) return next()
 
   if (!token) return next(responses.needAuth)
