@@ -8,7 +8,7 @@ const router = Router()
 
 function checkPermission (color, user) {
   if (user.type === 'a') return true
-  return color.writer === user._id
+  return color.writer == user._id // todo: implement objectid to string method
 }
 
 router.get('/', (req, res, next) => {
