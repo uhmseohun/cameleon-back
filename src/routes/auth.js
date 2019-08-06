@@ -2,6 +2,8 @@ import { Router } from 'express'
 import { check, validationResult } from 'express-validator'
 import crypto from 'crypto'
 import models from '@/models'
+import jwt from 'jsonwebtoken'
+import responses from '@/utils/responses'
 
 const router = Router()
 
@@ -21,6 +23,8 @@ router.post('/join', [
   let hashedPw = crypto.createHash('sha512')
   hashedPw.update(req.body.password)
   hashedPw = hashedPw.digest('base64')
+
+  req.body.password = hashedPw
 
   // todo: attach salt to password
 
