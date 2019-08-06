@@ -22,6 +22,10 @@ const colorSchema = new Schema({
   kelvin: {
     type: Number,
     required: true
+  },
+  writer: {
+    type: Schema.Types.ObjectId,
+    required: true
   }
 })
 
