@@ -42,8 +42,39 @@ router.post('/join', [
     }).catch(e => next(e))
 })
 
-router.post('/join', (req, res, next) => {
+/**
+ * @summary 아이디와 패스워드를 받아 유저 인증 후 토큰을 생성해 반환함
+ */
+router.post('/login', [
+  check('id').isString().not().isEmpty(),
+  check('password').isString().not().isEmpty()
+],(req, res, next) => {
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) return next(errors)
 
+  let hashedPw = crypto.createHash('sha512')
+  hashedPw.update(req.body.password)
+  hashedPw = hashedPw.digest('base64')
+
+  console.log(hashedPw)
+
+  models.User.findOne({ id: req.body.id, password: hashedPw })
+    .then(r => {
+      if (!r) return next(responses.checkAccount)
+
+      const accessToken = jwt.sign({
+        id: r.id,
+        name: r.name,
+        type: r.type
+      }, req.app.get('jwtsecret'), {
+        expiresIn: 60 * 60 * 24
+      })
+
+      res.json({
+        accessToken
+      })
+    })
+    .catch(e => next(e))
 })
 
 export default router
