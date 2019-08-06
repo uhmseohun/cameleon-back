@@ -7,11 +7,19 @@ import mongoose from 'mongoose'
 
 import routes from '@/routes'
 import utils from '@/utils'
+import models from '@/models'
 
 const app = express()
 
+app.use(cors())
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+
 mongoose.connect('mongodb://localhost:27017/cameleon',
-  { useNewUrlParser: true },
+  {
+    useCreateIndex: true,
+    useNewUrlParser: true
+  },
   error => {
     if (error) console.error(utils.messages.dbError)
   })
@@ -24,8 +32,28 @@ app.use('/color', routes.Color)
 app.use('/subject', routes.Subject)
 app.use('/user', routes.User)
 
-app.use(bodyParser)
-app.use(cors)
+app.use((req, res, next) => {
+  next(models.Error(404, utils.messages.noEndPoint))
+})
+
+app.use((error, req, res, next) => {
+  if (error.formatter) {
+    let errors = error.errors
+      .map(v => v.param)
+
+    errors = errors.filter((v, i) => {
+      return i === errors.indexOf(v)
+    })
+
+    res.status(400).json({
+      message: `${errors.join(', ')} 항목을 확인해주세요`
+    })
+  } else {
+    res.status(500).json({
+      message: error.message
+    })
+  }
+})
 
 // routes here
 
