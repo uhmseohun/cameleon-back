@@ -13,6 +13,10 @@ const subjectSchema = new Schema({
   color: {
     type: Schema.Types.ObjectId,
     ref: 'color'
+  },
+  writer: {
+    type: Schema.Types.ObjectId,
+    required: true
   }
 })
 
