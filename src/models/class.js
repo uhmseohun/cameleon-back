@@ -5,6 +5,8 @@ const classSchema = new Schema({
     type: String,
     required: true
   },
+  grade: Number,
+  class: Number,
   introduce: {
     type: String,
     required: true
