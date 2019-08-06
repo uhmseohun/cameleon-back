@@ -11,7 +11,7 @@ const router = Router()
  * @summary 회원 정보를 받아 유저를 생성함
  */
 router.post('/join', [
-  check(['id']).isString().not().isEmpty(),
+  check('id').isString().not().isEmpty(),
   check('password').isString().not().isEmpty(),
   check('name').isString().not().isEmpty(),
   check('type').isString().isLength({ min: 1, max: 1 })
