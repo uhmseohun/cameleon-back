@@ -18,6 +18,10 @@ const colorSchema = new Schema({
     lowercase: true,
     minlength: 6,
     maxlength: 6
+  },
+  kelvin: {
+    type: Number,
+    required: true
   }
 })
 
