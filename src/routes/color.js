@@ -14,6 +14,19 @@ router.get('/', (req, res, next) => {
     }))
 })
 
+router.get('/:colorId', (req, res, next) => {
+  const colorId = req.params.colorId
+
+  models.Color.findById(colorId)
+    .then(r => {
+      if (!r) return next(responses.colorNotExist)
+      res.json({
+        color: r
+      })
+    })
+    .catch(e => next(e))
+})
+
 router.post('/', [
   check('name').isString().not().isEmpty(),
   check('introduce').isString().not().isEmpty(),
