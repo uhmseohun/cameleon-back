@@ -32,4 +32,6 @@ router.post('/',[
     .catch(e => next(e))
 })
 
+// todo: put / delete method of subject
+
 export default router
