@@ -14,5 +14,13 @@ export default {
   unknownError: {
     status: 500,
     message: '알 수 없는 에러가 발생했습니다.'
+  },
+  classNotExist: {
+    status: 404,
+    message: '존재하지 않는 교실입니다.'
+  },
+  noPermission: {
+    status: 403,
+    message: '권한이 없습니다.'
   }
 }
