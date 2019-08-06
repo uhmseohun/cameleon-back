@@ -2,6 +2,7 @@ import express from 'express'
 
 import bodyParser from 'body-parser'
 import cors from 'cors'
+import dotenv from 'dotenv'
 
 import mongoose from 'mongoose'
 
@@ -11,9 +12,13 @@ import models from '@/models'
 
 const app = express()
 
+dotenv.config('.env')
+
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+
+app.set('jwtsecret', process.env.jwtsecret)
 
 mongoose.connect('mongodb://localhost:27017/cameleon',
   {
