@@ -13,8 +13,7 @@ const router = Router()
 router.post('/join', [
   check('id').isString().not().isEmpty(),
   check('password').isString().not().isEmpty(),
-  check('name').isString().not().isEmpty(),
-  check('type').isString().isLength({ min: 1, max: 1 })
+  check('name').isString().not().isEmpty()
 ], (req, res, next) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) return next(errors)
@@ -35,8 +34,7 @@ router.post('/join', [
       res.json({
         user: {
           id: r.id,
-          name: r.name,
-          type: r.type
+          name: r.name
         }
       })
     }).catch(e => next(e))
@@ -64,7 +62,6 @@ router.post('/login', [
         _id: r._id,
         id: r.id,
         name: r.name,
-        type: r.type,
         subject: r.subject
       }, req.app.get('jwtsecret'), {
         expiresIn: 60 * 60 * 24

@@ -15,11 +15,6 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  type: {
-    type: String,
-    required: true,
-    maxlength: 1
-  },
   subject: Schema.Types.ObjectId,
   class: [
     {

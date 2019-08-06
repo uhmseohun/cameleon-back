@@ -7,19 +7,9 @@ import responses from '@/utils/responses'
 
 const router = Router()
 
-function checkPermission (klass, user) {
-  if (user.type === 'a') return true
-  else if (user.type === 's') {
-    return klass.students.includes(user._id)
-  } else { // teacher
-    return user.class.includes(klass._id)
-  }
-}
-
 router.get('/', (req, res, next) => {
   models.Class.find({})
     .then(r => {
-      r = r.filter(v => checkPermission(v, req.user))
       res.json({
         classes: r
       })
@@ -59,9 +49,6 @@ router.delete('/:classId', async (req, res, next) => {
   const klass = await models.Class.findById(classId)
 
   if (!klass) return next(responses.classNotExist)
-  if (!checkPermission(klass, req.user)) {
-    return next(responses.noPermission)
-  }
 
   klass.delete()
     .then(() => res.status(204).end())

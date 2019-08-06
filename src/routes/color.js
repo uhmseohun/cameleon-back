@@ -7,11 +7,6 @@ import responses from '@/utils/responses'
 
 const router = Router()
 
-function checkPermission (color, user) {
-  if (user.type === 'a') return true
-  return color.writer == user._id // todo: implement objectid to string method
-}
-
 router.get('/', (req, res, next) => {
   models.Color.find({})
     .then(r => res.json({
@@ -44,7 +39,6 @@ router.delete('/:colorId', async (req, res, next) => {
   const color = await models.Color.findById(colorId)
 
   if (!color) return next(responses.colorNotExist)
-  if (!checkPermission(color, req.user)) return next(responses.noPermission)
 
   color.delete()
     .then(() => res.status(204).end())
