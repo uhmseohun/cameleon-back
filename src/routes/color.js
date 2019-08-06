@@ -3,6 +3,7 @@ import { Router } from 'express'
 import { check, validationResult } from 'express-validator'
 
 import models from '@/models'
+import responses from '@/utils/responses'
 
 const router = Router()
 
@@ -35,6 +36,19 @@ router.post('/', [
     .then(r => res.json({
       color: r
     })).catch(e => next(e))
+})
+
+router.delete('/:colorId', async (req, res, next) => {
+  const colorId = req.params.colorId
+
+  const color = await models.Color.findById(colorId)
+
+  if (!color) return next(responses.colorNotExist)
+  if (!checkPermission(color, req.user)) return next(responses.noPermission)
+
+  color.delete()
+    .then(() => res.status(204).end())
+    .catch(e => next(e))
 })
 
 export default router
